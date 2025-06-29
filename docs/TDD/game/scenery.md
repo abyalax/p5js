@@ -1,3 +1,75 @@
+## **Scenery - Sistem Latar Belakang Bergerak**  
+
+Scenery adalah class yang menangani latar belakang bergerak dalam game. Class ini menciptakan efek parallax dengan menggerakkan dua gambar latar belakang secara berurutan untuk memberikan kesan pergerakan yang mulus.
+
+---
+
+## **📌 Properti Scenery**  
+
+1. **image** → Objek gambar latar belakang dari p5.Image
+2. **velocity** → Kecepatan pergerakan latar belakang ke kiri
+3. **x1** → Posisi X gambar latar belakang pertama (mulai dari 0)
+4. **x2** → Posisi X gambar latar belakang kedua (mulai dari width)
+
+---
+
+## **🔀 Alur pada Scenery**  
+
+1. **Inisialisasi Latar Belakang**  
+   - Gambar latar belakang dimuat dari file asset
+   - Posisi awal x1 = 0 dan x2 = width
+   - Kecepatan pergerakan diatur
+
+2. **Rendering Latar Belakang**  
+   - Method show() menampilkan dua gambar latar belakang secara bersamaan
+   - Gambar pertama ditampilkan di posisi x1
+   - Gambar kedua ditampilkan di posisi x2
+   - Kedua gambar memiliki ukuran yang sama dengan canvas
+
+3. **Pergerakan Latar Belakang**  
+   - Method move() menggerakkan kedua gambar ke kiri
+   - x1 dan x2 berkurang sesuai dengan velocity
+   - Ketika gambar keluar dari layar (x < -width), posisi direset ke kanan
+
+4. **Efek Parallax**  
+   - Setiap lapisan latar belakang memiliki kecepatan berbeda
+   - Lapisan depan bergerak lebih cepat (velocity tinggi)
+   - Lapisan belakang bergerak lebih lambat (velocity rendah)
+
+---
+
+## **🎨 Lapisan Latar Belakang**  
+
+1. **Sky** → Langit (velocity: 0) - tidak bergerak
+2. **Clouds_1** → Awan pertama (velocity: 0.1) - bergerak lambat
+3. **Rocks** → Batu-batuan (velocity: 0) - tidak bergerak
+4. **Clouds_2** → Awan kedua (velocity: 0.3) - bergerak sedang
+5. **Ground** → Tanah (velocity: 0.5) - bergerak cepat
+
+---
+
+## **⚙️ Parameter Constructor**  
+
+- **image** → Objek p5.Image untuk latar belakang
+- **velocity** → Kecepatan pergerakan (nilai positif untuk bergerak ke kiri)
+
+---
+
+## **🔄️ Method Utama**  
+
+- **show()** → Menampilkan dua gambar latar belakang
+- **move()** → Menggerakkan latar belakang ke kiri dan reset posisi
+
+---
+
+## **📐 Perhitungan Posisi**  
+
+- **Reset posisi**: Ketika x < -width, posisi direset ke width
+- **Ukuran gambar**: Menggunakan width dan height canvas
+- **Pergerakan**: x = x - velocity setiap frame
+
+---
+
 ## **Konsep Fungsi `show` dalam `Scenery`**  
 
 Dalam kelas `Scenery`, fungsi `show` bertanggung jawab untuk menampilkan gambar latar belakang menggunakan metode `image()` dari pustaka p5.js.  

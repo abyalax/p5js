@@ -1,18 +1,77 @@
-### **Penjelasan Class `Animation`**
+## **Animation - Sistem Animasi Sprite**  
 
-Class `Animation` digunakan untuk menangani animasi sprite dalam game berbasis *frame-by-frame*. Class ini memungkinkan rendering gambar animasi berdasarkan urutan sprite yang diambil dari sebuah *spritesheet*.
+Animation adalah class dasar yang menangani animasi sprite frame-by-frame dalam game. Class ini digunakan sebagai parent class untuk Character dan Enemy yang memerlukan animasi sprite.
 
 ---
 
-### **Properti dalam Class `Animation`**
-1. **`image`** → Objek gambar (*spritesheet*) yang berisi beberapa frame animasi.  
-2. **`imgWidth` & `imgHeight`** → Lebar dan tinggi dari *spritesheet*.  
-3. **`xPos` & `yPos`** → Posisi x dan y tempat animasi ditampilkan di layar.  
-4. **`dy`** → Offset vertikal yang memungkinkan animasi bergerak ke atas dan ke bawah.  
-5. **`spriteW` & `spriteH`** → Lebar dan tinggi setiap frame dalam *spritesheet*.  
-6. **`proportion`** → Faktor skala untuk memperbesar atau memperkecil animasi di layar.  
-7. **`matrix`** → Array dua dimensi yang menyimpan posisi masing-masing frame di dalam *spritesheet*.  
-8. **`currentFrame`** → Menyimpan indeks frame animasi yang sedang ditampilkan.  
+## **📌 Properti Animation**  
+
+1. **image** → Objek gambar (spritesheet) yang berisi beberapa frame animasi
+2. **imgWidth** → Lebar total spritesheet
+3. **imgHeight** → Tinggi total spritesheet
+4. **xPos** → Posisi X tempat animasi ditampilkan di layar
+5. **yPos** → Posisi Y tempat animasi ditampilkan di layar
+6. **dy** → Offset vertikal yang memungkinkan animasi bergerak ke atas dan ke bawah
+7. **spriteW** → Lebar setiap frame dalam spritesheet
+8. **spriteH** → Tinggi setiap frame dalam spritesheet
+9. **proportion** → Faktor skala untuk memperbesar atau memperkecil animasi
+10. **matrix** → Array koordinat dari setiap frame dalam spritesheet
+11. **currentFrame** → Indeks frame saat ini yang sedang ditampilkan
+
+---
+
+## **🔀 Alur pada Animation**  
+
+1. **Inisialisasi Animasi**  
+   - Spritesheet dimuat dan dimensi gambar diambil
+   - Matrix koordinat frame dibuat secara otomatis
+   - Frame awal diset ke 0
+
+2. **Pembuatan Matrix Frame**  
+   - Matrix dibuat berdasarkan dimensi spritesheet dan ukuran frame
+   - Setiap elemen matrix berisi koordinat [x, y] dari frame dalam spritesheet
+   - Frame diurutkan dari kiri ke kanan, atas ke bawah
+
+3. **Rendering Animasi**  
+   - Method show() menampilkan frame saat ini menggunakan image()
+   - Frame yang ditampilkan sesuai dengan currentFrame
+   - Setelah menampilkan frame, animasi berlanjut ke frame berikutnya
+
+4. **Siklus Animasi**  
+   - currentFrame bertambah setiap kali show() dipanggil
+   - Ketika currentFrame mencapai akhir matrix, kembali ke frame 0
+   - Animasi berjalan secara berulang (loop)
+
+---
+
+## **⚙️ Parameter Constructor**  
+
+- **image** → Objek p5.Image (spritesheet)
+- **xPos** → Posisi X di layar
+- **yPos** → Posisi Y di layar
+- **dy** → Offset vertikal untuk animasi
+- **spriteW** → Lebar setiap frame
+- **spriteH** → Tinggi setiap frame
+- **proportion** → Faktor skala
+
+---
+
+## **🔄️ Method Utama**  
+
+- **show()** → Menampilkan frame animasi saat ini
+- **animate()** → Memajukan ke frame berikutnya
+- **makeMatrix()** → Membuat array koordinat frame dari spritesheet
+
+---
+
+## **📐 Perhitungan Matrix**  
+
+Matrix dibuat dengan rumus:
+- **columns** = imgWidth / spriteW
+- **lines** = imgHeight / spriteH
+- **koordinat frame** = [j * spriteW, i * spriteH]
+
+Dimana i adalah indeks baris dan j adalah indeks kolom dalam spritesheet.
 
 ---
 

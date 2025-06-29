@@ -14,7 +14,7 @@ class GameScreen {
    * @param {Scenery[]} background - Objek latar belakang permainan.
    * @param {number} score - Skor permainan.
    * @param {Enemy[]} enemies - Array musuh dalam permainan.
-   * @param {number} life - Jumlah nyawa pemain.
+   * @param {Life} life - nyawa pemain.
    * @param {number} [enemyIndex=0] - Indeks musuh aktif.
    * @param {RestartButton} restartButton - Tombol restart permainan.
    */
@@ -48,15 +48,14 @@ class GameScreen {
 	}
 
 	/**
-	 * @param {number[]} velocities - 
+	 * @param {number[]} velocities - array kecepatan masing-masing lapisan background
 	 * @description Fungsi ini digunakan untuk memuat gambar latar belakang dan font
 	 * @see this.enemies.push() - Menambahkan objek musuh ke dalam array enemies dalam game
 	 */
 	setup(velocities = [0]) {
 		velocities.forEach((value, index) => this.background.push(
 			new Scenery(this.images.background[index], value)
-		)
-		);
+		));
 
 		g_isGameOver = false;
 		g_character = new Character(
@@ -143,7 +142,7 @@ class GameScreen {
 	}
 
 	/**
-	 * @description Fungsi untuk membuat canvas di p5js
+	 * @description Fungsi untuk menampilkan layar permainan di p5JS
 	 */
 	draw() {
 		this.background.forEach(element => {
@@ -171,14 +170,5 @@ class GameScreen {
 			this.handleGameOver();
 		}
 
-	}
-}
-
-function keyPressed() {
-	console.log(key);
-	if (key === 'ArrowUp') {
-		if (g_character.jump()) {
-			jumpSound.play();
-		}
 	}
 }

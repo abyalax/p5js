@@ -40,7 +40,6 @@
 
 ### 2.3 Level Design
 - Serangan monster kadang cepat kadang lambat
-- Monster muncul lebih banyak dan cepat ketika score mulai banyak
 
 ## 3. Visual & Audio
 ### 3.1 Art Style

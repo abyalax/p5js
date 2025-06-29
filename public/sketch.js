@@ -84,8 +84,14 @@ function setup() {
 }
 
 function draw() {
-
 	screens[g_currentScreen].draw();
-	
 }
 
+function keyPressed() {
+	console.log(key);
+	if (key === 'ArrowUp') {
+		if (g_character.jump()) {
+			jumpSound.play();
+		}
+	}
+}
